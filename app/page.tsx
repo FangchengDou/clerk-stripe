@@ -29,6 +29,17 @@ export default function Dashboard() {
     });
     session?.reload();
   };
+  const handleClick = () => {
+    Notification.requestPermission().then((result) => {
+      console.log(result);
+      if (result === 'granted') {
+        new Notification('Hello, world!', {
+          body: 'Here is a notification body',
+          icon: 'https://via.placeholder.com/150',
+        });
+      }
+    });
+  };
   return (
     <div>
       <h1>Dashboard</h1>
@@ -43,6 +54,7 @@ export default function Dashboard() {
           },
         ]}
       />
+       <button onClick={handleClick}>Click me</button>
     </div>
   );
 }
